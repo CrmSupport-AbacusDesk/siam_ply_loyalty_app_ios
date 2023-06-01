@@ -1,0 +1,45 @@
+
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{'News Detail' | translate}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="latest-news">
+		<div class="news-list">
+			<div class="thumb"><img src={{news_detail.image}}></div>
+			<div class="desc">
+				<div class="d-data">
+					<p>{{news_detail.source}}</p>
+					<p><i class="material-icons">date_range</i> {{news_detail.date_created | date:'d MMMM y'}}</p>
+				</div>
+				
+				<div class="description">
+					<p>{{lang != 'en' ? news_detail.hin_title : news_detail.title |titlecase}}</p>
+					<p><strong>{{'Description' | translate}}</strong> : {{lang != 'en' ? news_detail.hin_desc : news_detail.desc}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <div class="fix">
+		<div class="pr-img">
+			<img src={{news_detail.image}}>
+		</div>
+	</div>
+	<div class="box">
+		<div class="date">
+			<span><i class="material-icons">date_range</i></span>
+			<p>{{news_detail.date_created |date:'d MMM, y'}}</p>
+		</div>
+		<div class="social">
+			<span><i class="material-icons">public</i></span>
+			<p>{{news_detail.source}}</p>
+		</div>
+	</div>
+	<div class="pr-about">
+		<h1>{{lang != 'en' ? news_detail.hin_title : news_detail.title |titlecase}}</h1>
+		<p><strong>{{'Description' | translate}}</strong> : {{lang != 'en' ? news_detail.hin_desc : news_detail.desc}}</p>
+	</div> -->
+</ion-content>

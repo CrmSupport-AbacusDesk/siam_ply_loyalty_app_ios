@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'Point Details' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="pl16 pr16 mt16" *ngIf="user_type == 1">
+    <div class="gallery"  *ngFor="let val of image; let i=index">
+      <img src="{{path+val.image}}">
+    </div>
+  </div>
+  <div class="pl16 pr16 mt16" *ngIf="user_type == 2">
+    <div class="gallery"  *ngFor="let val of image1; let i=index">
+      <img src="{{path+val.image}}">
+    </div>
+  </div>
+</ion-content>

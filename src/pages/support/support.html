@@ -1,0 +1,155 @@
+<!--
+  Generated template for the SupportPage page.
+  
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>      
+  <ion-navbar>
+    <ion-title>support</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+</ion-content> -->
+
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Support</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <!-- <form #f='ngForm' (submit)=" f.form.valid ? submit(f):''"> -->
+    <form #f='ngForm' (submit)=" f.form.valid ? submit(f):''">
+      
+      <div class="cs-form main-padding-16">
+        <ion-list>
+          <ion-item class="cs-select" [ngClass]="{'error':f.submitted && category?.invalid}">
+            <ion-label >Select Category</ion-label>
+            <ion-select name="category" [(ngModel)]="data.category" #category="ngModel" required>
+              <ion-option *ngFor="let row of Support_Type" value="{{row.category_name}}">{{row.category_name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item class="cs-input mt16" [ngClass]="{'error':f.submitted && remark?.invalid}">
+            <ion-label floating>Remark</ion-label>
+            <ion-textarea type="text" name="remark" #remark="ngModel" [(ngModel)]="data.remark" required style="height: 80px;"></ion-textarea>
+          </ion-item>
+        </ion-list>
+        
+        <!-- <div class="heading line mt18 mb16">
+          <p>Attachment</p>
+          <div class="little-edit">
+            <a  *ngIf="edit1==''"><i class="material-icons" (click)="onUploadChange();edit1 = '1' ">edit</i></a> -->
+            <!-- <a *ngIf="edit1=='1'"><i class="material-icons" (click)="uploadImage(support_image.img)">save</i></a> -->
+            <!-- <a *ngIf="edit1=='1'"><i class="material-icons">save</i></a>
+            </div>
+          </div> -->
+          
+          <!-- <div class="adhar" *ngIf='support_image.img'>
+            <img src="{{support_image.img ? support_image.img : 'assets/imgs/adhar.png'}}">
+          </div> -->
+          
+          <div class="upload-doc">
+            <div class="">
+              Image
+            </div>
+            <ul class="no-padding">
+              <li class="add-image" (click)="onUploadChange()">
+                <i class="material-icons">add_a_photo</i>
+              </li>
+              <li class="image-upload" *ngFor='let image of support_image;index as i'>
+                <img src="{{image}}">
+                <button class="del" (click)="delete_img(i)"><i class="material-icons">delete_sweep</i></button>
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="upload-doc">
+            <div class="">
+              Counter Image <span class="redc">*</span>
+            </div>
+          </div> 
+          <div class="list"  *ngFor="let file of show_selectedFile;let i = index;">
+            <div class="blog" *ngIf="file.upload_index">
+              <div class="thumb">
+                <i class="material-icons check-ic">check</i>
+              </div>
+              <p>{{file.name}}</p>
+              <div class="icon-btn" (click)="delete_uploaded_file(file.name,i)">
+                <a ion-button><i class="material-icons">remove_circle</i></a>
+              </div>
+            </div>
+            <div class="blog upload"  *ngIf="!file.upload_index">              
+              <div class="wp100 pt10">
+                <p>Uploading</p>
+                <div class="uploder"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="file-choose">
+            <ul>
+              <li class="add-box">
+                <label ><input style="display: none;" type="file" (change)="select_file($event)"  multiple ><i class="material-icons upload-ic">add</i>
+                </label>
+              </li>
+            </ul>
+          </div> -->
+          
+          <button ion-button class="cs-btn mb0" [disabled]="saveFlag == true"> {{saveFlag == true ? 'Please Wait' : 'Submit'}} </button>
+        </div>
+      </form>
+      
+      <div class="coman-list" *ngFor='let row of Support_hist'>
+        <div class="top-head">
+          <ul>
+            <li>
+              <p class="braket-span " [ngClass]="{'Pending':row.status=='Pending','Approved':row.status=='Done','Reject':row.status=='Reject'}">{{row.status}}</p>
+              <span>Status</span>
+            </li>
+            <li>
+              <p>{{row.category}}</p>
+              <span>Category</span>
+            </li>
+            <li>
+              <p>{{row.date_created | date:'d MMM y'}}</p>
+              <span>Created Date</span>
+            </li>
+          </ul>
+          <!-- <button *ngIf='row.status=="Pending"' class="del" style="background-color: #ffffff;" (click)="reject(row.id)"><i class="material-icons " style="background-color: #ffffff;">highlight_off</i></button> -->
+        </div>
+        
+        <div class="padding10">
+          <div class="cs-flex">
+            <div class="bdr-field wp100">
+              <span>Description</span>
+              <p>{{row.remark}}</p>
+              
+              
+            </div>
+          </div>
+          <div class="cs-flex" *ngIf='row.status=="Done"'>
+            <div class="bdr-field wp100">
+              <span>Resolving Remark</span>
+              <p>{{row.status_remark}}</p>
+            </div>
+          </div>
+          
+          <div class="image-collaps" *ngIf="row.image != ''">
+            <ion-scroll scrollX="true">
+              <div class="image-body">
+                <div class="img-content" *ngFor="let row2 of row.image"  >
+                  <img src="{{upload_url+ row2.document_name}}" (click)="viewDetail(row2.document_name)">
+                </div>
+              </div>
+            </ion-scroll>
+          </div>
+        </div>
+      </div>
+      
+    </ion-content>
+    
+    
